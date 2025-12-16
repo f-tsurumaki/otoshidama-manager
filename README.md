@@ -7,6 +7,9 @@
 
 ### 2. 環境変数ファイルを作成
 
+### ルートディレクトリ用
+root/.envを作成（notionに貼ります）
+
 #### バックエンド用
 backend/.envを作成(notionに貼ります)
 
@@ -23,7 +26,7 @@ docker-compose up -d --build
 ```
 
 **確認**:
-- ブラウザで http://localhost:4000/health にアクセス
+- ブラウザで http://localhost:4000 にアクセス
 - Hello World! が表示されればOK
 
 ### 4. フロントエンドの動作確認
