@@ -11,18 +11,11 @@ app.use(express.json());
 
 // 口座一覧など accounts 関連 API を /accounts 配下で使えるようにする
 app.use("/accounts", accountsRouter);
+app.use("/balance", router);
 
 // ルーティング
 app.get("/", (req: Request, res: Response) => {
   res.send("Hello World!");
-});
-
-app.use("/api", router);
-
-// ←ここからエラーハンドラーを追加
-app.use((err: any, req: Request, res: Response, next: NextFunction) => {
-  console.error("Unhandled Error:", err);
-  res.status(500).json({ result: "error", message: err.message });
 });
 
 export default app;
