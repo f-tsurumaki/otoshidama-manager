@@ -1,11 +1,13 @@
 // 銀行APIを呼ぶ
 import { sunabarClient } from "../common/sunabarClient";
 
-/**
- * 口座一覧取得
- */
 export const getAccounts = async () => {
-  const response = await sunabarClient.get("/accounts");
-
-  return response.data;
+  try {
+    const response = await sunabarClient.get("/personal/v1/accounts");
+    console.log("API Response:", response.data);
+    return response.data;
+  } catch (err: any) {
+    console.error("API Error:", err.response?.data || err.message);
+    throw err;
+  }
 };
