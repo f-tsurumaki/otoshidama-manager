@@ -3,6 +3,6 @@ import { fetchBalance } from './balance.controller';
 
 const router = Router();
 
-router.get('/accounts/balance', fetchBalance);
+router.get('/', fetchBalance);
 
 export default router;
