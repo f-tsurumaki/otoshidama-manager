@@ -1,15 +1,28 @@
-import express, { Request, Response } from "express";
-import dotenv from "dotenv";
+import express, { Request, Response, NextFunction } from "express";
 
-dotenv.config();
+// accounts 配下のルーティングを使うために router を import
+import accountsRouter from "./accounts/account.routes";
+import router from "./balance/balance.routes";
 
 const app = express();
-const PORT = 4000;
 
+// JSON リクエストボディを扱えるようにする middleware
+app.use(express.json());
+
+// 口座一覧など accounts 関連 API を /accounts 配下で使えるようにする
+app.use("/accounts", accountsRouter);
+
+// ルーティング
 app.get("/", (req: Request, res: Response) => {
   res.send("Hello World!");
 });
 
-app.listen(PORT, "0.0.0.0", () => {
-  console.log(`🚀 Server running on http://localhost:${PORT}`);
+app.use("/api", router);
+
+// ←ここからエラーハンドラーを追加
+app.use((err: any, req: Request, res: Response, next: NextFunction) => {
+  console.error("Unhandled Error:", err);
+  res.status(500).json({ result: "error", message: err.message });
 });
+
+export default app;
