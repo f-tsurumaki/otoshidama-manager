@@ -10,7 +10,7 @@ app.use(express.json());
 
 // 口座一覧など accounts 関連 API を /accounts 配下で使えるようにする
 app.use("/accounts", accountsRouter);
-app.use("/api/balance", balanceRouter);
+app.use("/accounts/balance", balanceRouter);
 
 // ルーティング
 app.get("/", (req: Request, res: Response) => {
