@@ -1,3 +1,4 @@
+import BalanceCard from "@/components/balance/BalanceCard";
 import TransactionList from "@/components/transactions/TransactionList";
 
 export default function Home() {
@@ -7,7 +8,9 @@ export default function Home() {
       <div className="w-full max-w-6xl p-6">
         <section className="mb-6">
           <h2 className="text-xl font-bold">＜銀行残高＞</h2>
-          <li className="flex items-center justify-between border rounded-md p-4 mb-2 bg-white"></li>
+          <li className="flex items-center justify-center border rounded-md p-4 mb-2 bg-white">
+            <BalanceCard />
+          </li>
         </section>
         <section className="mb-6">
           <h2 className="text-xl font-bold">＜振り分け明細＞</h2>
