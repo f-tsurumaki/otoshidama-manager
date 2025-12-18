@@ -1,6 +1,7 @@
 import BalanceCard from "@/components/balance/BalanceCard";
 import TransactionList from "@/components/transactions/TransactionList";
 import SubAccountName from "@/components/accounts/SubAccountName";
+import SubAccountBalance from "@/components/balance/SpAccountBalance";
 
 export default function Page() {
   return (
@@ -18,12 +19,15 @@ export default function Page() {
           <ul>
             <li>
               <SubAccountName index={1} />
+              <SubAccountBalance index={1} /> 
             </li>
             <li>
-              <SubAccountName index={2} />
+              <SubAccountName index={2} /> 
+              <SubAccountBalance index={2} /> 
             </li>
             <li>
               <SubAccountName index={3} />
+              <SubAccountBalance index={3} />
             </li>
           </ul>
         </section>
