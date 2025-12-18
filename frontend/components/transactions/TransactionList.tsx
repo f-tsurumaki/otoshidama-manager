@@ -1,35 +1,36 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import TransactionItem from "./TransactionItem";
-import { fetchTransactions, Transaction } from "./transactions.api.";
+import { fetchTransactions } from "./transactions.api";
+import { Transaction } from "@/types/transaction";
 
-/**
- * TransactionList
- * ・APIから入出金明細一覧を取得
- * ・取得したデータを TransactionItem に渡して表示
- */
+// TransactionList コンポーネント
+// ・APIから入出金明細一覧を取得する
+// ・取得したデータを一覧表示する（親コンポーネント）
 const TransactionList: React.FC = () => {
-  // 入出金明細の一覧を保持する state
+  // 入出金明細の一覧データを保持する state
+  // 初期値は空配列
   const [transactions, setTransactions] = useState<Transaction[]>([]);
-  // ローディング状態
+
+  // データ取得中かどうかを管理する state
   const [loading, setLoading] = useState(true);
-  // エラーメッセージ
   const [error, setError] = useState<string | null>(null);
 
-  /**
-   * 初回レンダリング時にAPIを呼ぶ
-   */
+  // 初回レンダリング時に実行される処理
+  // 第二引数が [] のため「1回だけ」実行される
   useEffect(() => {
     const loadTransactions = async () => {
       try {
-        // backend API 呼び出し
+        // backend API を呼び出して入出金明細を取得
         const data = await fetchTransactions();
+
+        // 取得したデータを state に保存
         setTransactions(data);
-      } catch (err) {
-        console.error(err);
+      } catch {
         setError("取引データの取得に失敗しました");
       } finally {
+        // 成功・失敗に関わらずローディング終了
         setLoading(false);
       }
     };
@@ -37,20 +38,15 @@ const TransactionList: React.FC = () => {
     loadTransactions();
   }, []);
 
-  // ローディング中
-  if (loading) {
-    return <p>読み込み中...</p>;
-  }
+  if (loading) return <p>読み込み中...</p>;
 
-  // エラー発生時
-  if (error) {
-    return <p className="text-red-500">{error}</p>;
-  }
+  // エラーがある場合はエラーメッセージを表示
+  if (error) return <p className="text-red-500">{error}</p>;
 
+  // 正常にデータが取得できた場合の表示
   return (
     <ul>
       {transactions.map((tx, index) => (
-        // 一覧表示なので key が必要
         <TransactionItem key={index} transaction={tx} />
       ))}
     </ul>
