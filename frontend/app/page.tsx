@@ -1,5 +1,5 @@
 import TransactionList from "@/components/transactions/TransactionList";
-import AccountList from "@/components/AccountList";
+import AccountList from "@/components/accounts/AccountList";
 
 export default function Page() {
   return (
