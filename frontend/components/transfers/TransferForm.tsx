@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import { transferApi } from "./transfer.api";
 
@@ -6,14 +8,15 @@ export default function TransferForm({
   onConfirm,
 }: {
   category: "pocketMoney" | "investment" | "savings";
-  onConfirm: (result: unknown) => void;
+  onConfirm?: (result: unknown) => void;
 }) {
   const [amount, setAmount] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setLoading(true);
     try {
-      // category に応じて API を呼び分ける
       let result;
       if (category === "pocketMoney") {
         result = await transferApi.pocketMoney(amount);
@@ -23,29 +26,33 @@ export default function TransferForm({
         result = await transferApi.savings(amount);
       }
 
-      function isError(err: unknown): err is Error {
-        return err instanceof Error;
+      if (onConfirm) {
+        onConfirm(result);
       }
-      onConfirm(result); // 確認画面へ渡す
     } catch (err: unknown) {
-      if (err instanceof Error) {
-        console.error("❌ Transfer error:", err.message);
-      } else {
-        console.error("❌ Transfer error:", err);
-      }
+      console.error("❌ Transfer error:", err);
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h2>{category}</h2>
+    <form onSubmit={handleSubmit} className="space-y-2">
+      <h2 className="font-semibold">{category}</h2>
       <input
         type="number"
         value={amount}
         onChange={(e) => setAmount(e.target.value)}
         placeholder="金額を入力"
+        className="border rounded-md p-2 w-full"
       />
-      <button type="submit">送金</button>
+      <button
+        type="submit"
+        disabled={!amount || loading}
+        className="bg-blue-500 text-white px-4 py-2 rounded-md disabled:opacity-50"
+      >
+        {loading ? "送金中..." : "送金"}
+      </button>
     </form>
   );
 }

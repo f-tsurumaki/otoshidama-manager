@@ -1,28 +1,32 @@
-// frontend/components/transfers/transfer.api.ts
 import { apiClient } from "@/lib/apiClient";
-import { TransferRequest, TransferResponse } from "@/types/transfer";
+import { TransferResponse } from "@/types/transfer";
 
 export const transferApi = {
   pocketMoney: async (amount: string) => {
     const res = await apiClient.post<TransferResponse>(
-      "/transfers/pocket-money",
-      { amount } as TransferRequest
+      "/api/transfers/pocket-money",
+      {
+        paymentAmount: amount,
+      }
     );
     return res.data;
   },
-
   investment: async (amount: string) => {
     const res = await apiClient.post<TransferResponse>(
-      "/transfers/investment",
-      { amount } as TransferRequest
+      "/api/transfers/investment",
+      {
+        paymentAmount: amount,
+      }
     );
     return res.data;
   },
-
   savings: async (amount: string) => {
-    const res = await apiClient.post<TransferResponse>("/transfers/savings", {
-      amount,
-    } as TransferRequest);
+    const res = await apiClient.post<TransferResponse>(
+      "/api/transfers/savings",
+      {
+        paymentAmount: amount,
+      }
+    );
     return res.data;
   },
 };

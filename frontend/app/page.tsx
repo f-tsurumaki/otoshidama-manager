@@ -1,5 +1,6 @@
 import BalanceCard from "@/components/balance/BalanceCard";
 import TransactionList from "@/components/transactions/TransactionList";
+import TransferForm from "@/components/transfers/TransferForm";
 
 export default function Home() {
   return (
@@ -18,6 +19,9 @@ export default function Home() {
 
         <section className="mb-6">
           <h2 className="text-xl font-bold">＜振り分け登録＞</h2>
+          <TransferForm category="pocketMoney" />
+          <TransferForm category="investment" />
+          <TransferForm category="savings" />
         </section>
 
         <section className="mb-6">
