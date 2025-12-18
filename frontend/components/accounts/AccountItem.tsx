@@ -1,28 +1,32 @@
+"use client";
+
+import React from "react";
 import { Account } from "@/types/account";
 
-type Props = {
-  account: Account;
-};
+// AccountItemコンポーネント：親口座とその子口座をリスト表示するためのコンポーネント
+const AccountItem: React.FC<{ account: Account }> = ({ account }) => {
+  // コンポーネントがレンダリングされるときに親口座と子口座の情報を確認
+  console.log("AccountItemレンダリング:", account);
 
-const AccountItem: React.FC<Props> = ({ account }) => {
+  const parentName = account.accountName;
+
+  // 子口座が存在する場合は名前を配列にして取得、なければ空配列
+  const subNames = account.subAccounts?.map((sub) => sub.accountName) || [];
+  if (!account.subAccounts) {
+    console.log("子口座は存在しません");
+  }
+
   return (
-    <li className="border-b py-2">
-      {/* 親口座名 */}
-      <div className="font-bold">{account.accountName}</div>
+    <li className="border rounded-md p-2 mb-2 bg-white">
+      {/* 親口座表示 */}
+      <div className="font-bold">{parentName}</div>
 
-      {/* 子口座がある場合はネストで表示 */}
-      {account.subAccounts && account.subAccounts.length > 0 && (
-        <ul className="ml-4 mt-1">
-          {account.subAccounts.map((sub) => (
-            <li
-              key={sub.accountId || sub.accountName}
-              className="text-sm text-gray-600"
-            >
-              {sub.accountName} {/* spAccountName ではなく accountName */}
-            </li>
-          ))}
-        </ul>
-      )}
+      {/* 子口座表示 */}
+      <ul className="ml-4 list-disc">
+        {subNames.map((name, idx) => (
+          <li key={idx}>{name}</li>
+        ))}
+      </ul>
     </li>
   );
 };
