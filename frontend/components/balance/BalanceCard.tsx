@@ -51,8 +51,8 @@ function BalanceCard() {
 
   return (
     <div>
-    <h1>銀行残高（こうざざんだか）</h1>
-    <ul>
+      <h1>銀行残高</h1>
+      <ul>
         {mainBalance.map((account) => (
             <li key={account.accountId}>
                 残高: {account.balance}円
