@@ -32,6 +32,7 @@ export interface Transaction {
   remarks: string; // 摘要
 }
 
+/** 振り分け口座（親口座） */
 export interface Account {
   accountId: string;
   branchCode: string;
@@ -48,6 +49,13 @@ export interface Account {
   transferLimitAmount: string;
 }
 
+/** 振り分け口座（子口座） */
+export interface SubAccountName {
+  accountId: string;
+  spAccountName: string;
+}
+
 export interface AccountsResponse {
-  accounts: Account[];
+  accounts: Account[]; // 親口座
+  spAccounts: SubAccountName[]; // 子口座
 }
