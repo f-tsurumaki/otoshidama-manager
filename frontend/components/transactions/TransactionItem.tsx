@@ -32,3 +32,4 @@ const TransactionItem: React.FC<Props> = ({ transaction }) => {
 };
 
 export default TransactionItem;
+
