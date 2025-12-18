@@ -1,13 +1,12 @@
-// 銀行APIを呼ぶ
+// src/accounts/account.service.ts
 import { sunabarClient } from "../common/sunabarClient";
+import { AccountsResponse } from "../types/types";
 
-export const getAccounts = async () => {
-  try {
-    const response = await sunabarClient.get("/personal/v1/accounts");
-    console.log("API Response:", response.data);
-    return response.data;
-  } catch (err: any) {
-    console.error("API Error:", err.response?.data || err.message);
-    throw err;
-  }
+export const getAccounts = async (): Promise<AccountsResponse> => {
+  console.log("🔍GMO API呼び出し開始");
+  const response = await sunabarClient.get<AccountsResponse>(
+    "/personal/v1/accounts"
+  );
+  console.log("✅ API呼び出し成功:", response.data);
+  return response.data;
 };
