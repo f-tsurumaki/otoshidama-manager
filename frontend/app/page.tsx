@@ -1,9 +1,12 @@
-import TransactionList from "@/components/transactions/TransactionList";
+import TransferForm from "@/components/transfers/TransferForm";
 
 export default function Home() {
   return (
-    <main className="p-8">
-      <TransactionList />
+    <main>
+      <h1>振り分け登録</h1>
+      <TransferEntry category="pocketMoney" />
+      <TransferEntry category="investment" />
+      <TransferEntry category="savings" />
     </main>
   );
 }
