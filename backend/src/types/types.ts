@@ -12,6 +12,16 @@ export interface Balance {
   currencyName: string;
 }
 
+
+export interface SPBalance {
+  accountId: string;
+  odBalance: string;
+  tdTotalBalance: string;
+  fodTotalBalanceYenEquivalent: string;
+  spAccountFcyBalances: any[];
+}
+
 export interface BalanceResponse {
     balances: Balance[];
+    spAccountBalances: SPAccountBalance[];
 }
