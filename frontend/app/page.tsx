@@ -1,7 +1,8 @@
 import BalanceCard from "@/components/balance/BalanceCard";
 import TransactionList from "@/components/transactions/TransactionList";
+import SubAccountName from "@/components/accounts/SubAccountName";
 
-export default function Home() {
+export default function Page() {
   return (
     // 画面全体のレイアウトを担当
     <main className="min-h-screen bg-zinc-50 flex justify-center">
@@ -14,10 +15,32 @@ export default function Home() {
         </section>
         <section className="mb-6">
           <h2 className="text-xl font-bold">＜振り分け明細＞</h2>
+          <ul>
+            <li>
+              <SubAccountName index={1} />
+            </li>
+            <li>
+              <SubAccountName index={2} />
+            </li>
+            <li>
+              <SubAccountName index={3} />
+            </li>
+          </ul>
         </section>
 
         <section className="mb-6">
           <h2 className="text-xl font-bold">＜振り分け登録＞</h2>
+          <div className="flex justify-between gap-4">
+            <div className="flex-1 border rounded p-4 bg-purple-400 text-center text-white">
+              <SubAccountName index={1} />
+            </div>
+            <div className="flex-1 border rounded p-4 bg-pink-400 text-center text-white">
+              <SubAccountName index={2} />
+            </div>
+            <div className="flex-1 border rounded p-4 bg-teal-400 text-center text-white">
+              <SubAccountName index={3} />
+            </div>
+          </div>
         </section>
 
         <section className="mb-6">
