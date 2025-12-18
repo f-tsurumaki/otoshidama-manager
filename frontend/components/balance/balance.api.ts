@@ -2,7 +2,7 @@ import { apiClient } from '@/lib/apiClient';
 import { Balance, BalanceResponse, ApiResponse} from '@/types/balance';
 
 export const fetchBalance = async ():Promise<BalanceResponse> => {
-    const response = await apiClient.get<ApiResponse<BalanceResponse>>('/balance');
+    const response = await apiClient.get<ApiResponse<BalanceResponse>>('/accounts/balance');
 
     if (!response.data.success) {
         throw new Error('残高情報の取得に失敗しました');
