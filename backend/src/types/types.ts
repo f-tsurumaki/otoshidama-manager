@@ -13,7 +13,7 @@ export interface Balance {
 }
 
 
-export interface SPBalance {
+export interface SPAccountBalance {
   accountId: string;
   odBalance: string;
   tdTotalBalance: string;
