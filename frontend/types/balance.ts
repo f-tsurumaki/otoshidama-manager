@@ -11,6 +11,11 @@ export interface Balance {
   balance: string;
 };
 
+export interface SpBalance {
+  accountId: string;
+  balance: string;
+}
+
 export interface BalanceResponse {
   balance: Balance[];
   spBalance: Balance[];
