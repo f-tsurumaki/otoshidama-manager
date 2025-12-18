@@ -14,6 +14,11 @@ export const transferService = {
     debitSpAccountId: string;
     paymentAmount: string;
   }) {
+    console.log("🚀 executeTransfer payload:", {
+      depositSpAccountId,
+      debitSpAccountId,
+      paymentAmount,
+    });
     try {
       const response = await axios.post(
         `${SUNABAR_BASE}/transfer/spaccounts-transfer`,
@@ -33,8 +38,39 @@ export const transferService = {
       );
       return response.data;
     } catch (error) {
-      console.error("Transfer API error:", error);
+      if (error instanceof Error) {
+        console.error("❌ Transfer API error:", error.message);
+      } else {
+        console.error("❌ Transfer API error:", error);
+      }
       throw new Error("Failed to execute transfer");
     }
+  },
+
+  // お小遣い振替
+  async transferPocketMoney(amount: string) {
+    return this.executeTransfer({
+      depositSpAccountId: process.env.POCKETMONEY_ACCOUNT_ID!,
+      debitSpAccountId: process.env.PARENT_ACCOUNT_ID!,
+      paymentAmount: amount,
+    });
+  },
+
+  // 投資振替
+  async transferInvestment(amount: string) {
+    return this.executeTransfer({
+      depositSpAccountId: process.env.INVESTMENT_ACCOUNT_ID!,
+      debitSpAccountId: process.env.PARENT_ACCOUNT_ID!,
+      paymentAmount: amount,
+    });
+  },
+
+  // 貯金振替
+  async transferSavings(amount: string) {
+    return this.executeTransfer({
+      depositSpAccountId: process.env.SAVINGS_ACCOUNT_ID!,
+      debitSpAccountId: process.env.PARENT_ACCOUNT_ID!,
+      paymentAmount: amount,
+    });
   },
 };
