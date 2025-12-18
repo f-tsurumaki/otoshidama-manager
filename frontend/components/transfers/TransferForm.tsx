@@ -47,12 +47,13 @@ export default function TransferForm({
         onChange={(e) => setAmount(e.target.value)}
         placeholder="金額を入力"
         step="100"
+        min="0"
         className="border rounded-md p-2 w-full"
       />
       <button
         type="submit"
         disabled={!amount || loading}
-        className="bg-blue-500 text-white px-4 py-2 rounded-md disabled:opacity-50"
+        className="cursor-pointer border border-white text-white px-4 py-2 rounded-md hover:bg-white hover:text-black"
       >
         {loading ? "送金中..." : "振替"}
       </button>
