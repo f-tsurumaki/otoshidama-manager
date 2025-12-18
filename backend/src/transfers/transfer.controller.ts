@@ -4,10 +4,12 @@ import { transferService } from "./transfer.service";
 export const transferController = {
   // お小遣い振替
   async pocketMoney(req: Request, res: Response) {
-    console.log("📩 req.body:", req.body);
-    console.log("📩 keys:", Object.keys(req.body));
     try {
-      const paymentAmount = req.body?.paymentAmount ?? "500"; // 仮の値でテスト
+      const paymentAmount = req.body?.paymentAmount ?? "1000"; // 仮の値でテスト
+
+      if (!paymentAmount) {
+        return res.status(400).json({ error: "paymentAmount is required" });
+      }
 
       //const { paymentAmount } = req.body;
       const result = await transferService.transferPocketMoney(paymentAmount);

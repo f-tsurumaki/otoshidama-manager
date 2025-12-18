@@ -1,8 +1,8 @@
 import { Router } from 'express';
-import { getBalance } from './balance.controller';
+import { fetchBalance } from './balance.controller';
 
 const router = Router();
 
-router.get('/balances', getBalance);
+router.get('/', fetchBalance);
 
 export default router;

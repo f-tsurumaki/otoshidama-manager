@@ -1,8 +1,9 @@
 import axios from "axios";
+import { config } from "../common/config";
 
 // 環境変数からベースURLとトークンを取得
-const SUNABAR_BASE = `${process.env.GMO_API_URL}/personal/v1`;
-const TOKEN = process.env.GMO_ACCESS_TOKEN;
+const SUNABAR_BASE = `${config.aozora.apiURL}/personal/v1`;
+const TOKEN = config.aozora.accessToken;
 
 export const transferService = {
   async executeTransfer({
@@ -14,11 +15,6 @@ export const transferService = {
     debitSpAccountId: string;
     paymentAmount: string;
   }) {
-    console.log("🚀 executeTransfer payload:", {
-      depositSpAccountId,
-      debitSpAccountId,
-      paymentAmount,
-    });
     try {
       const response = await axios.post(
         `${SUNABAR_BASE}/transfer/spaccounts-transfer`,
@@ -46,30 +42,26 @@ export const transferService = {
       throw new Error("Failed to execute transfer");
     }
   },
-
-  // お小遣い振替
   async transferPocketMoney(amount: string) {
     return this.executeTransfer({
-      depositSpAccountId: process.env.POCKETMONEY_ACCOUNT_ID!,
-      debitSpAccountId: process.env.PARENT_ACCOUNT_ID!,
+      depositSpAccountId: config.aozora.pocketMoneyAccountId,
+      debitSpAccountId: config.aozora.parentAccountId,
       paymentAmount: amount,
     });
   },
 
-  // 投資振替
   async transferInvestment(amount: string) {
     return this.executeTransfer({
-      depositSpAccountId: process.env.INVESTMENT_ACCOUNT_ID!,
-      debitSpAccountId: process.env.PARENT_ACCOUNT_ID!,
+      depositSpAccountId: config.aozora.investmentAccountId,
+      debitSpAccountId: config.aozora.parentAccountId,
       paymentAmount: amount,
     });
   },
 
-  // 貯金振替
   async transferSavings(amount: string) {
     return this.executeTransfer({
-      depositSpAccountId: process.env.SAVINGS_ACCOUNT_ID!,
-      debitSpAccountId: process.env.PARENT_ACCOUNT_ID!,
+      depositSpAccountId: config.aozora.savingsAccountId,
+      debitSpAccountId: config.aozora.parentAccountId,
       paymentAmount: amount,
     });
   },
