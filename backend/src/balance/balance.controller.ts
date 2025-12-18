@@ -1,19 +1,20 @@
-import { Request, Response } from 'express';
-import { fetchBalance } from './balance.service';
+import { Request, Response,NextFunction } from 'express';
+import { getBalance } from './balance.service';
 
-export const getBalance = async (req: Request, res: Response) => {
+export const fetchBalance = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
-    const balance = await fetchBalance();
+    const balance = await getBalance();
+
     res.status(200).json({
       success: true,
       data: balance
     });
 
   } catch (error) {
-    console.error('Balance Controller Error:', error);
-    res.status(500).json({ 
-      success: false,
-      error: '残高の取得に失敗しました'
-    });
+    next(error);
   }
 };
