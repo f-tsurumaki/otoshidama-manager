@@ -9,4 +9,4 @@ export const getBalance = async (): Promise<BalanceResponse> => {
   );
   console.log('✅ API呼び出し成功:', response.data);
   return response.data;
-};
+  };
