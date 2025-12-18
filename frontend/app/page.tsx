@@ -1,9 +1,11 @@
 import TransactionList from "@/components/transactions/TransactionList";
+import AccountList from "@/components/AccountList";
 
-export default function Home() {
+export default function Page() {
   return (
     <main className="p-8">
       <TransactionList />
+      <AccountList />
     </main>
   );
 }
