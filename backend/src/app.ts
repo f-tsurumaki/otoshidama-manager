@@ -3,6 +3,9 @@ import cors from "cors";
 // accounts 配下のルーティングを使うために router を import
 import balanceRouter from "./balance/balance.routes";
 import accountsRouter from "./accounts/account.routes";
+
+import router from "./balance/balance.routes";
+import transferRouter from "./transfers/transfer.routes";
 import transactionRouter from "./transactions/transaction.routes";
 
 const app = express();
@@ -21,6 +24,12 @@ app.use("/transactions", transactionRouter); //取引明細関連
 app.get("/", (req: Request, res: Response) => {
   res.send("Hello World!");
 });
+
+// balance.routes.ts
+app.use("/api", router);
+
+//transfer.routes.ts
+app.use("/api/transfers", transferRouter);
 
 // ←ここからエラーハンドラーを追加
 app.use((err: any, req: Request, res: Response, next: NextFunction) => {
