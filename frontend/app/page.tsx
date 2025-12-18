@@ -19,9 +19,11 @@ export default function Home() {
 
         <section className="mb-6">
           <h2 className="text-xl font-bold">＜振り分け登録＞</h2>
-          <TransferForm category="pocketMoney" />
-          <TransferForm category="investment" />
-          <TransferForm category="savings" />
+          <div className="grid grid-cols-3 gap-4">
+            <TransferForm category="お小遣い" />
+            <TransferForm category="投資" />
+            <TransferForm category="貯金" />
+          </div>
         </section>
 
         <section className="mb-6">

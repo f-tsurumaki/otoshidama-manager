@@ -7,7 +7,7 @@ export default function TransferForm({
   category,
   onConfirm,
 }: {
-  category: "pocketMoney" | "investment" | "savings";
+  category: "お小遣い" | "投資" | "貯金";
   onConfirm?: (result: unknown) => void;
 }) {
   const [amount, setAmount] = useState("");
@@ -18,9 +18,9 @@ export default function TransferForm({
     setLoading(true);
     try {
       let result;
-      if (category === "pocketMoney") {
+      if (category === "お小遣い") {
         result = await transferApi.pocketMoney(amount);
-      } else if (category === "investment") {
+      } else if (category === "投資") {
         result = await transferApi.investment(amount);
       } else {
         result = await transferApi.savings(amount);
@@ -29,6 +29,8 @@ export default function TransferForm({
       if (onConfirm) {
         onConfirm(result);
       }
+      // ✅ 入力欄をリセット！
+      setAmount("");
     } catch (err: unknown) {
       console.error("❌ Transfer error:", err);
     } finally {
@@ -44,6 +46,7 @@ export default function TransferForm({
         value={amount}
         onChange={(e) => setAmount(e.target.value)}
         placeholder="金額を入力"
+        step="100"
         className="border rounded-md p-2 w-full"
       />
       <button
@@ -51,7 +54,7 @@ export default function TransferForm({
         disabled={!amount || loading}
         className="bg-blue-500 text-white px-4 py-2 rounded-md disabled:opacity-50"
       >
-        {loading ? "送金中..." : "送金"}
+        {loading ? "送金中..." : "振替"}
       </button>
     </form>
   );
