@@ -50,14 +50,12 @@ function BalanceCard() {
     }
 
   return (
-    <div>
-      <ul>
+        <div className="text-center">
         {mainBalance.map((account) => (
-            <li key={account.accountId}>
+            <div key={account.accountId}>
                 残高: {account.balance}円
-            </li>
+            </div>
         ))}
-    </ul>
     </div>
   );
 }
