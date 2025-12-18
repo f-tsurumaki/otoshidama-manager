@@ -1,9 +1,11 @@
 import BalanceCard from "@/components/balance/BalanceCard";
+import TransactionList from "@/components/transactions/TransactionList";
 
 export default function Home() {
   return (
-    <div>
+    <main className="p-8">
       <BalanceCard />
-    </div>
+      <TransactionList />
+    </main>
   );
 }
