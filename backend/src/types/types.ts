@@ -15,3 +15,9 @@ export interface Balance {
 export interface BalanceResponse {
     balances: Balance[];
 }
+// ===== 入出金明細（アプリで使う形） =====
+export interface Transaction {
+  valueDate: string; // 価値日
+  amount: string;    // 金額（API仕様で string）
+  remarks: string;   // 摘要
+}
