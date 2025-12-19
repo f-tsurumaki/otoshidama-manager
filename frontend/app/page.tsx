@@ -1,5 +1,6 @@
 import BalanceCard from "@/components/balance/BalanceCard";
 import TransactionList from "@/components/transactions/TransactionList";
+import TransferForm from "@/components/transfers/TransferForm";
 import SubAccountName from "@/components/accounts/SubAccountName";
 import SubAccountBalance from "@/components/balance/SpAccountBalance";
 
@@ -34,15 +35,16 @@ export default function Page() {
 
         <section className="mb-6">
           <h2 className="text-xl font-bold">＜振り分け登録＞</h2>
+
           <div className="flex justify-between gap-4">
             <div className="flex-1 border rounded p-4 bg-purple-400 text-center text-white">
-              <SubAccountName index={1} />
+              <TransferForm category="お小遣い" />
             </div>
             <div className="flex-1 border rounded p-4 bg-pink-400 text-center text-white">
-              <SubAccountName index={2} />
+              <TransferForm category="投資" />
             </div>
             <div className="flex-1 border rounded p-4 bg-teal-400 text-center text-white">
-              <SubAccountName index={3} />
+              <TransferForm category="貯金" />
             </div>
           </div>
         </section>
