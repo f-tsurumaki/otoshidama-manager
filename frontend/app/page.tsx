@@ -20,11 +20,11 @@ export default function Page() {
           <ul>
             <li>
               <SubAccountName index={1} />
-              <SubAccountBalance index={1} /> 
+              <SubAccountBalance index={1} />
             </li>
             <li>
-              <SubAccountName index={2} /> 
-              <SubAccountBalance index={2} /> 
+              <SubAccountName index={2} />
+              <SubAccountBalance index={2} />
             </li>
             <li>
               <SubAccountName index={3} />
@@ -38,13 +38,13 @@ export default function Page() {
 
           <div className="flex justify-between gap-4">
             <div className="flex-1 border rounded p-4 bg-purple-400 text-center text-white">
-              <TransferForm category="お小遣い" />
+              <TransferForm category="お小遣い" reading="おこづかい" />
             </div>
             <div className="flex-1 border rounded p-4 bg-pink-400 text-center text-white">
-              <TransferForm category="投資" />
+              <TransferForm category="投資" reading="とうし" />
             </div>
             <div className="flex-1 border rounded p-4 bg-teal-400 text-center text-white">
-              <TransferForm category="貯金" />
+              <TransferForm category="貯金" reading="ちょきん" />
             </div>
           </div>
         </section>
