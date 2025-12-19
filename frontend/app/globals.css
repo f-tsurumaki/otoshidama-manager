@@ -20,7 +20,10 @@
 }
 
 body {
-  background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  background-image: url("/background.png");
+  background-attachment: fixed; /* スクロールしても背景を動かさない */
+  background-size: cover; /* 画面全体を覆うように拡大・縮小する */
+  background-position: center; /* 画像の中央を画面の中央に合わせる */
 }
