@@ -10,7 +10,7 @@ const TransactionItem: React.FC<Props> = ({ transaction }) => {
 
   return (
     // 明細1件分なので li タグを使用
-    <li className="flex items-center justify-between border rounded-md p-4 mb-2 bg-white">
+    <li className="flex items-center justify-between border rounded-xl p-4 mb-2 bg-white">
       {/* 価値日 */}
       <div className="w-32 text-sm text-gray-500">{transaction.valueDate}</div>
 
